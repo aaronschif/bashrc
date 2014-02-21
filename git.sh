@@ -1,0 +1,7 @@
+
+. /usr/lib/git-core/git-sh-prompt
+export GIT_PS1_SHOWUPSTREAM="verbose"
+export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWSTASHSTATE=
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWDIRTYSTATE=1
