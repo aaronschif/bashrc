@@ -1,0 +1,3 @@
+[submodule "fabric-completion"]
+	path = fabric-completion
+	url = git@github.com:underself/fabric-completion.git

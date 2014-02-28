@@ -5,3 +5,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+. ./fabric-completion/fabric-completion.bash
