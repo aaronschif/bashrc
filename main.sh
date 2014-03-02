@@ -7,6 +7,7 @@ esac
 
 . ./git.sh
 . ./colors.sh
+. ./prompt_colors.sh
 . ./alias.sh
 . ./complete.sh
 . ./history.sh
@@ -40,6 +41,7 @@ __py_virt_ps1_restore()
         unset _OLD_VIRTUAL_PS1
     fi
 }
+
 __pwd()
 {
 	i=${PWD//$HOME/'~'}
@@ -47,9 +49,24 @@ __pwd()
 }
 
 export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore;"
-export PS1="\
-\`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
-\u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
+#~ export PS1="\
+#~ \`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
+#~ \u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
+#~ export PS1=`printf \
+#~ "${eBlue}[${eGreen}%s${eBlue}]%s${eReset} " \
+#~ "\u" \
+#~ "\$" 
+#~ `
+
+export PS1=`tr --delete '\n' <<EOF
+${eBlue}- ${eGreen}\u${eBlue}@${eGreen}\h${Blue}
+\\\`__git_ps1 "${eBlue} - ${eGreen}%s${eReset}" \\\`
+\\\`__py_virt_ps1 "${eBlue} - ${eGreen}%s${eReset}" \\\`
+\n
+${eBlue}- ${eGreen}\w${eBlue} \$ 
+${eReset}
+EOF
+`
 
 case "$TERM" in
 xterm*|rxvt*) # Can set title

@@ -1,1 +1,1 @@
-export PROJECT_HOME="~/Projects"
+export PROJECT_HOME="$HOME/Projects"

@@ -3,16 +3,21 @@ import re
 from os import environ
 import shutil
 import logging
+from yamlformatter import YAMLFormatter
 
 logging.basicConfig(
 	level='INFO'
 )
 log = logging.getLogger(__name__)
+logHandler = logging.FileHandler('main.log.yaml')
+logHandler.setFormatter(YAMLFormatter())
+log.addHandler(logHandler)
 
 parser = argparse.ArgumentParser(description='Compile a script file.')
 parser.add_argument('main', help='File to compile.')
 parser.add_argument('out', nargs='?', default='bashrc.out', help='Outfile.')
-parser.add_argument('--install', action='store_true')
+parser.add_argument('-i', '--install', action='store_true', 
+	help='Move to ~/.bashrc after compiling')
 args = parser.parse_args()
 
 source_statement = re.compile('^(source|[.])\s+(?!/)(?P<file>.+)')
