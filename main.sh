@@ -58,15 +58,22 @@ export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore;"
 #~ "\$" 
 #~ `
 
-export PS1=`tr --delete '\n' <<EOF
-${eBlue}- ${eGreen}\u${eBlue}@${eGreen}\h${Blue}
-\\\`__git_ps1 "${eBlue} - ${eGreen}%s${eReset}" \\\`
-\\\`__py_virt_ps1 "${eBlue} - ${eGreen}%s${eReset}" \\\`
+export PS1=`tr -d '\n' <<EOF
+\n
+${eBlue}- ${eGreen}\u${eBlue}@${eGreen}\h
+\\\`__git_ps1 "${eBlue} - ${eGreen}%s" \\\`
+\\\`__py_virt_ps1 "${eBlue} - ${eGreen}%s" \\\`
 \n
 ${eBlue}- ${eGreen}\w${eBlue} \$ 
 ${eReset}
 EOF
 `
+
+#~ __PS1()
+#~ {
+	#~ echo "\w"
+#~ }
+#~ export PS1='`__PS1`'
 
 case "$TERM" in
 xterm*|rxvt*) # Can set title

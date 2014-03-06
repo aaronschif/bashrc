@@ -18,3 +18,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 alias py='python'
+
+alias datestamp='date +%d%b%y'
+

@@ -13,14 +13,14 @@ eCyan='\[\e[0;36m\]' # Cyan
 eWhite='\[\e[0;37m\]' # White
 
 # Bold
-BBlack='\e[1;30m' # Black
-BRed='\e[1;31m' # Red
-BGreen='\e[1;32m' # Green
-BYellow='\e[1;33m' # Yellow
-BBlue='\e[1;34m' # Blue
-BPurple='\e[1;35m' # Purple
-BCyan='\e[1;36m' # Cyan
-BWhite='\e[1;37m' # White
+eBBlack='\[\e[1;30m\]' # Black
+eBRed='\[\e[1;31m\]' # Red
+eBGreen='\[\e[1;32m\]' # Green
+eBYellow='\[\e[1;33m\]' # Yellow
+eBBlue='\[\e[1;34m\]' # Blue
+eBPurple='\[\e[1;35m\]' # Purple
+eBCyan='\[\e[1;36m\]' # Cyan
+eBWhite='\[\e[1;37m\]' # White
 
 # Underline
 UBlack='\e[4;30m' # Black
