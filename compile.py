@@ -3,14 +3,14 @@ import re
 from os import environ
 import shutil
 import logging
-from yamlformatter import YAMLFormatter
+#from yamlformatter import YAMLFormatter
 
 logging.basicConfig(
 	level='INFO'
 )
 log = logging.getLogger(__name__)
 logHandler = logging.FileHandler('main.log.yaml')
-logHandler.setFormatter(YAMLFormatter())
+#logHandler.setFormatter(YAMLFormatter())
 log.addHandler(logHandler)
 
 parser = argparse.ArgumentParser(description='Compile a script file.')

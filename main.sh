@@ -42,13 +42,23 @@ __py_virt_ps1_restore()
     fi
 }
 
+__smart_fab_set()
+{
+	if [ -f "conf/fabfile.py" ] 
+	then
+		alias fab="fab -f conf/fabfile.py"
+	else
+		unalias fab 2> /dev/null
+	fi
+}
+
 __pwd()
 {
 	i=${PWD//$HOME/'~'}
 	printf "${1}"${i//'/'/"${2}/${1}"}"\[${Reset}\]"
 }
 
-export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore;"
+export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set;"
 #~ export PS1="\
 #~ \`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
 #~ \u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
