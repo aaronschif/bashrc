@@ -47,7 +47,9 @@ __smart_fab_set()
 	if [ -f "conf/fabfile.py" ] 
 	then
 		alias fab="fab -f conf/fabfile.py"
+		export FAB_COMPLETION_FABFILE_DIR='conf'
 	else
+		export FAB_COMPLETION_FABFILE_DIR=
 		unalias fab 2> /dev/null
 	fi
 }
