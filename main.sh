@@ -8,8 +8,8 @@ esac
 . ./git.sh
 . ./colors.sh
 . ./prompt_colors.sh
-. ./alias.sh
 . ./complete.sh
+. ./alias.sh
 . ./history.sh
 . ./misc.sh
 . ./environ.sh
