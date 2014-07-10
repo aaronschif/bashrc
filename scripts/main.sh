@@ -5,6 +5,7 @@ esac
 
 . ./work/main.sh
 
+. ./pythonz.sh
 . ./git.sh
 . ./colors.sh
 . ./prompt_colors.sh

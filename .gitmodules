@@ -1,3 +1,3 @@
 [submodule "fabric-completion"]
-	path = fabric-completion
+	path = scripts/fabric-completion
 	url = git@github.com:aaronschif/fabric-completion.git 
