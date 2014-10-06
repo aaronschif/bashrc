@@ -25,9 +25,9 @@ fi
 __py_virt_ps1()
 {
     if [ -n "$VIRTUAL_ENV" ]
-    then 
+    then
         if [ -n "$1" ]
-        then 
+        then
             printf -- "$1" `basename $VIRTUAL_ENV`
         else
             echo -n "[]"
@@ -36,7 +36,7 @@ __py_virt_ps1()
 }
 __py_virt_ps1_restore()
 {
-    if [ -n "$_OLD_VIRTUAL_PS1" ] 
+    if [ -n "$_OLD_VIRTUAL_PS1" ]
     then
         PS1=$_OLD_VIRTUAL_PS1
         unset _OLD_VIRTUAL_PS1
@@ -45,7 +45,7 @@ __py_virt_ps1_restore()
 
 __smart_fab_set()
 {
-	if [ -f "conf/fabfile.py" ] 
+	if [ -f "conf/fabfile.py" ]
 	then
 		alias fab="fab -f conf/fabfile.py"
 		export FAB_COMPLETION_FABFILE_DIR='conf'
@@ -55,10 +55,21 @@ __smart_fab_set()
 	fi
 }
 
-__pwd()
+# __pwd()
+# {
+# 	i=${PWD//$HOME/'~'}
+# 	printf "${1}"${i//'/'/"${2}/${1}"}"\[${Reset}\]
+# }
+
+__color_host()
 {
-	i=${PWD//$HOME/'~'}
-	printf "${1}"${i//'/'/"${2}/${1}"}"\[${Reset}\]"
+  if [ -n "$SSH_CONNECTION" ]
+  then
+    hash=$(md5sum <<< `hostname`)
+    n=$((0x${hash%% *}))
+
+    echo -e '@\[\e[0;3'$(($n%6+1))'m\]'`hostname`
+  fi
 }
 
 export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set;"
@@ -68,17 +79,20 @@ export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set;"
 #~ export PS1=`printf \
 #~ "${eBlue}[${eGreen}%s${eBlue}]%s${eReset} " \
 #~ "\u" \
-#~ "\$" 
+#~ "\$"
 #~ `
+
+SPACE_CHAR=' ';
 
 export PS1=`tr -d '\n' <<EOF
 \n
-${eBlue}- ${eGreen}\u${eBlue}@${eGreen}\h
+${eBlue}- ${eGreen}\u${eBlue}
+\`__color_host \`
 \\\`__git_ps1 "${eBlue} - ${eGreen}%s" \\\`
 \\\`__py_virt_ps1 "${eBlue} - ${eGreen}%s" \\\`
 \n
-${eBlue}- ${eGreen}\w${eBlue} \$ 
-${eReset}
+${eBlue}- ${eGreen}\w${eBlue} \$
+${eReset}${SPACE_CHAR}
 EOF
 `
 
