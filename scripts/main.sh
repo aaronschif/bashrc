@@ -14,6 +14,7 @@ esac
 . ./history.sh
 . ./misc.sh
 . ./environ.sh
+. ./prompt_commands/ksu_vagrant.sh
 
 export PROMPT_DIRTRIM=2
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -72,7 +73,7 @@ __color_host()
   fi
 }
 
-export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set;"
+export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set; __ksu_vagrant;"
 #~ export PS1="\
 #~ \`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
 #~ \u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
