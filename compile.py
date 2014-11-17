@@ -16,7 +16,7 @@ log.addHandler(logHandler)
 parser = argparse.ArgumentParser(description='Compile a script file.')
 parser.add_argument('main', help='File to compile.')
 parser.add_argument('out', nargs='?', default='bashrc.out', help='Outfile.')
-parser.add_argument('-i', '--install', action='store_true', 
+parser.add_argument('-i', '--install', action='store_true',
 	help='Move to ~/.bashrc after compiling')
 args = parser.parse_args()
 
@@ -33,13 +33,13 @@ def _read_r(main):
             else:# not ignore_statement.match(line):
                 yield line
 
-if __name__ == '__main__':				
+if __name__ == '__main__':
     with open(args.out, 'w') as o:
         for line in _read_r(args.main):
             o.write(line)
-		
+
     if args.install:
         log.info(' installing to ~/.bashrc')
 	shutil.move(args.out, environ['HOME'] + '/.bashrc')
-					
+
 # TODO --install
