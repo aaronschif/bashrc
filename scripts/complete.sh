@@ -8,6 +8,4 @@ fi
 
 . ./fabric-completion/fabric-completion.bash
 
-eval "`pip completion --bash`"
-
-
+eval "$(pip completion --bash)"
