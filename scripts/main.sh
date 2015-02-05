@@ -35,14 +35,6 @@ __py_virt_ps1()
         fi
     fi
 }
-__py_virt_ps1_restore()
-{
-    if [ -n "$_OLD_VIRTUAL_PS1" ]
-    then
-        PS1=$_OLD_VIRTUAL_PS1
-        unset _OLD_VIRTUAL_PS1
-    fi
-}
 
 __smart_fab_set()
 {
@@ -73,7 +65,7 @@ __color_host()
   fi
 }
 
-export PROMPT_COMMAND="$PROMPTCOMMAND __py_virt_ps1_restore; __smart_fab_set; __ksu_vagrant;"
+export PROMPT_COMMAND="$PROMPTCOMMAND __smart_fab_set; __ksu_vagrant;"
 #~ export PS1="\
 #~ \`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
 #~ \u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
