@@ -66,15 +66,7 @@ __color_host()
   fi
 }
 
-export PROMPT_COMMAND="$PROMPTCOMMAND __smart_fab_set; __ksu_vagrant;"
-#~ export PS1="\
-#~ \`__py_virt_ps1 '[\[${Green}\]%s\[${Reset}\]] '; __git_ps1 '[\[${Green}\]%s\[${Reset}\]] '\`\
-#~ \u@\h\n\w \[${Yellow}\]\$\[${Reset}\] "
-#~ export PS1=`printf \
-#~ "${eBlue}[${eGreen}%s${eBlue}]%s${eReset} " \
-#~ "\u" \
-#~ "\$"
-#~ `
+export PROMPT_COMMAND="__smart_fab_set; __ksu_vagrant; $PROMPTCOMMAND"
 
 SPACE_CHAR=' ';
 
