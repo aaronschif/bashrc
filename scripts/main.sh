@@ -5,7 +5,7 @@ esac
 
 . ./work/main.sh
 
-. ./pythonz.sh
+# . ./pythonz.sh
 . ./git.sh
 . ./colors.sh
 . ./prompt_colors.sh
@@ -15,12 +15,13 @@ esac
 . ./misc.sh
 . ./environ.sh
 . ./prompt_commands/ksu_vagrant.sh
+. ./util.sh
 
 export PROMPT_DIRTRIM=2
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-color_prompt=yes
+    color_prompt=yes
 else
-color_prompt=
+    color_prompt=
 fi
 
 __py_virt_ps1()
@@ -89,12 +90,6 @@ ${eReset}${SPACE_CHAR}
 EOF
 `
 
-#~ __PS1()
-#~ {
-	#~ echo "\w"
-#~ }
-#~ export PS1='`__PS1`'
-
 case "$TERM" in
 xterm*|rxvt*) # Can set title
     ;;
@@ -103,7 +98,18 @@ xterm*|rxvt*) # Can set title
 esac
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(gulp --completion=bash)"
+! [[ "$PATH" =~ "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command_exists pyenv
+then
+    # No shims, in favor of virtualenv.
+    OLD_PATH="$PATH"
+    eval "$(pyenv init -)"
+    PATH="$OLD_PATH"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+if command_exists gulp
+then
+    eval "$(gulp --completion=bash)"
+fi
