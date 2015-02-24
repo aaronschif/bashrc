@@ -68,19 +68,13 @@ __color_host()
 
 export PROMPT_COMMAND="__smart_fab_set; __ksu_vagrant; $PROMPTCOMMAND"
 
-SPACE_CHAR=' ';
+host=`__color_host`
+git="\`__git_ps1 '${eBlue} - ${eGreen}%s '\`"
+venv="\`__py_virt_ps1 '${eBlue} - ${eGreen}%s '\`"
 
-export PS1=`tr -d '\n' <<EOF
-\n
-${eBlue}- ${eGreen}\u${eBlue}
-\`__color_host \`
-\\\`__git_ps1 "${eBlue} - ${eGreen}%s" \\\`
-\\\`__py_virt_ps1 "${eBlue} - ${eGreen}%s" \\\`
-\n
-${eBlue}- ${eGreen}\w${eBlue} \$
-${eReset}${SPACE_CHAR}
-EOF
-`
+export PS1="
+${eBlue}- ${eGreen}\u${eBlue}${host}${git}${venv}
+${eBlue}- ${eGreen}\w${eBlue} \$${eReset} "
 
 case "$TERM" in
 xterm*|rxvt*) # Can set title
