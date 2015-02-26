@@ -59,8 +59,8 @@ __color_host()
 {
   if [ -n "$SSH_CONNECTION" ]
   then
-    hash=$(md5sum <<< `hostname`)
-    n=$((0x${hash%% *}))
+    local hash=$(md5sum <<< `hostname`)
+    local n=$((0x${hash%% *}))
 
     echo -e '@\[\e[0;3'$(($n%6+1))'m\]'`hostname`
   fi

@@ -6,6 +6,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. ./fabric-completion/fabric-completion.bash
+. ./fabric_complete.sh
 
 eval "$(pip completion --bash)"
