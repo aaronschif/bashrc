@@ -13,6 +13,6 @@ function __ksu_vagrant()
     then
         export VAGRANT_CWD=$(eval echo $KSU_VAGRANT_SOURCE)
     else
-        export VAGRANT_CWD=
+        unset VAGRANT_CWD
     fi
 }
