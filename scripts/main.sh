@@ -66,7 +66,7 @@ __color_host()
   fi
 }
 
-export PROMPT_COMMAND="__smart_fab_set; __ksu_vagrant; $PROMPTCOMMAND"
+export PROMPT_COMMAND="__smart_fab_set; __ksu_vagrant; $PROMPT_COMMAND"
 
 host=`__color_host`
 git="\`__git_ps1 '${eBlue} - ${eGreen}%s '\`"
@@ -99,3 +99,5 @@ if command_exists gulp
 then
     eval "$(gulp --completion=bash)"
 fi
+
+. ./title.sh
