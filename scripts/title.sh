@@ -2,20 +2,26 @@ case $TERM in
     rxvt|*term)
         if [ -n "$SSH_CONNECTION" ]
         then
-            __title_host="`whoami`@`hostname`: %s"
+            __title_host="`whoami`@`hostname`"
         else
-            __title_host="%s"
+            __title_host=""
         fi
 
         function __title {
             local bc
+            local title=$(basename `echo $PWD | sed "s,^$HOME,~,"`)
             if [ -n "${1}" ]
             then
-                bc="${1}"
-            else
-                bc="$PWD"
+                title="${title}: ${1}"
             fi
-            local title="`printf $__title_host $bc`"
+            if [ -n "$__title_host" ]
+            then
+                title="$__title_host $title"
+            fi
+            if [ -n "${TITLE}" ]
+            then
+                title="[$TITLE] ${title}"
+            fi
             echo -ne "\033]0;${title}\007"
         }
 
