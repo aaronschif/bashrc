@@ -17,7 +17,7 @@ esac
 . ./prompt_commands/ksu_vagrant.sh
 . ./util.sh
 
-if which vimpager $> /dev/null; then export PAGER=vimpager; fi
+which vimpager &> /dev/null && export PAGER=vimpager
 
 export PROMPT_DIRTRIM=2
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
